@@ -1,0 +1,29 @@
+# VSC settings
+.vscode
+
+# Intelij settings
+.idea
+
+# Virtual Environment
+.venv
+
+# Distribution / packaging
+*.egg-info/
+build/
+dist/
+*pyc
+*tar.gz
+
+# Created while running locally
+*.spec
+*anchor_file
+*html
+*zip
+.mypy_cache/
+debug.log
+up-repo/
+tmpup/
+htmlcov/*
+.coverage
+git_manager*
+.*_logs/
