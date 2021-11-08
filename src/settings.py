@@ -11,6 +11,14 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from src.kubectl.kubectl import Kubectl
+
+def get_secret_password():
+    kubectl = Kubectl()
+
+    secret = kubectl.get_secret("postgresdb-secret", "reservi")
+
+    return (secret.get('username'), secret.get('password'))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,16 +29,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-1)+!dq^&v3%1_)4u9r@xpc^#s+$l%0pjq9u^9+zk3#)*2&t56c'
+SECRET_DB_CREDENTIALS = get_secret_password(
 
+)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 100
+}
 
 # Application definition
-
 INSTALLED_APPS = [
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -72,14 +86,12 @@ WSGI_APPLICATION = 'src.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'reservidb',
-        'USER': 'reserviowner',
-        'PASSWORD': 'somepass',
+        'USER': SECRET_DB_CREDENTIALS[0],
+        'PASSWORD': SECRET_DB_CREDENTIALS[1],
         'HOST': '127.0.0.1',
         'PORT': '12345'
     }
