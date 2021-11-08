@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'reservidb',
         'USER': 'reserviowner',
-        'PASSWORD': 'fif68exo',
+        'PASSWORD': 'somepass',
         'HOST': '127.0.0.1',
         'PORT': '12345'
     }
