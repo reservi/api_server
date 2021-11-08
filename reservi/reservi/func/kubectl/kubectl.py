@@ -60,8 +60,3 @@ class Kubectl:
             raise IOError(f"service not found")
 
         return requested_service
-
-if __name__ == "__main__":
-    k = Kubectl()
-    print(k.get_secret("postgresdb-secret", namespace="reservi"))
-
