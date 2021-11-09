@@ -17,7 +17,6 @@ class Sex(models.Model):
         return self.sex_shortcut
 
 
-
 class UserModel(models.Model):
     username = models.CharField(max_length=30, blank=False)
     email = models.EmailField(max_length=100)
@@ -25,8 +24,8 @@ class UserModel(models.Model):
     name = models.CharField(max_length=30, blank=False)
     secondname = models.CharField(max_length=30, blank=False)
     surename = models.CharField(max_length=50, blank=False)
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    sex = models.ForeignKey(Sex, on_delete=models.CASCADE)
+    country = models.ForeignKey(Country, related_name='country', on_delete=models.CASCADE)
+    sex = models.ForeignKey(Sex, related_name='sex', on_delete=models.CASCADE)
     street = models.CharField(max_length=50, blank=False)
     postal_code = models.CharField(max_length=15, blank=False)
     birth_date = models.DateField()
