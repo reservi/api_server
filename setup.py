@@ -3,6 +3,8 @@ from setuptools import setup, find_packages
 import os
 import sys
 
+__version__ = "0.0.0"
+
 def read(fname):
     """Used to read long description
 
@@ -42,13 +44,16 @@ def filter_data(data):
 # 'version': '_updated_by_set_version_number_',
 package_information = {
     'name': 'Reservi API',
-    'version': '1.0',
+    'version': __version__,
     'description': 'API for Reservi App',
     'maintainer': 'Dawid Brylka',
     'maintainer_email': 'eurobi.123@gmail.com',
     'url': 'TBD',
     'license': 'MIT',
     'packages': find_packages(),
+    'package_data': {
+        'static': ['static']
+    },
     'entry_points': {
         "console_scripts": [
             "reservi=app.cli.reservi:main",
