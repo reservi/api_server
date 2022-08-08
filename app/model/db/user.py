@@ -5,9 +5,11 @@ from . import Base
 
 class User(Base):
     __tablename__ = "users"
-    
+
     id = Column(Integer, primary_key=True)
     name = Column(String)
     surename = Column(String)
+    nickname = Column(String)
+    username = Column(String)
     email = Column(String)
     password = Column(String)

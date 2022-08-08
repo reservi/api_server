@@ -66,7 +66,7 @@ package_information = {
 }
 
 if __name__ == '__main__':
-    MINIMUM_PYTHON_VERSION = (3, 9)
+    MINIMUM_PYTHON_VERSION = (3, 8)
     if sys.version_info < MINIMUM_PYTHON_VERSION:
         raise EnvironmentError(
             f"Python version too old. Minimum Python version: {'.'.join(map(str, MINIMUM_PYTHON_VERSION))}"
