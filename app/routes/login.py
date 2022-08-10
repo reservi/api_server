@@ -13,7 +13,7 @@ router = APIRouter(
     tags=["auth"],
 )
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
 
 @router.post("/login")
 async def login(form_data: OAuth2PasswordRequestForm = Depends()) -> dict:
@@ -22,7 +22,6 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()) -> dict:
     """
     r = jsonable_encoder(form_data)
     uh = UserHandler(r)
-
     if uh.validate_user() != UserState.VALID_USER:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

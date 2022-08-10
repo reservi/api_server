@@ -70,7 +70,7 @@ class TokenHandler(HandlerBase):
         """
         to_encode = {
             "sub": uh.public_user_data.username,
-            "exp": datetime.utcnow() + timedelta(seconds=60)
+            "exp": datetime.utcnow() + timedelta(minutes=60)
         }
 
         return jwt.encode(to_encode, self.__secret_key, self.__alghoritm)
